@@ -33,8 +33,6 @@ A aplicação utiliza arquitetura em camadas, separando claramente as responsabi
 - **Security:** controla autenticação e autorização
 - **Infra:** configurações gerais e integrações
 
-Essa abordagem facilita a leitura, testes e evolução do sistema.
-
 ---
 
 ## Tecnologias Utilizadas
