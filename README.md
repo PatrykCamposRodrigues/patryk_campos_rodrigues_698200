@@ -1,95 +1,137 @@
-# patryk_campos_rodrigues_698200
-# Projeto Back-End – Processo Seletivo SEPLAG/MT
+# Artistas API — Processo Seletivo (Patryk Campos Rodrigues — 698200)
 
-## Identificação
-- **Repositório:** patryk_campos_rodrigues_698200
-- **Edital:** nº 001/2026 – SEPLAG/MT
-- **Etapa:** Projeto Profissional – Back-End
+Projeto desenvolvido como parte de processo seletivo na área de TI, com o objetivo de demonstrar domínio prático em desenvolvimento backend utilizando Java, Spring Boot, arquitetura em camadas e API REST.
 
-## Candidato
-- **Nome:** Patryk Campos Rodrigues
-- **Inscrição:** 698200
-- **Formação:** Sistemas de Informação
-- **Pós-graduação:** Governança de TI
+O sistema implementa o gerenciamento de Artistas, Álbuns e Faixas musicais, incluindo relacionamento entre as entidades e persistência em banco de dados relacional.
 
----
+O projeto foi desenvolvido, executado e testado integralmente via console, sem uso de interface gráfica, conforme boas práticas de backend.
 
-## Objetivo
-Este projeto tem como objetivo disponibilizar uma API REST para o gerenciamento
-de artistas e seus álbuns musicais, atendendo aos requisitos técnicos definidos
-no Anexo II-A do edital.
+Objetivo do Projeto
 
-A solução foi desenvolvida com foco em organização, segurança, clareza de código
-e facilidade de manutenção, simulando um ambiente real de uso institucional.
+Implementar uma API REST capaz de:
+- Cadastrar e listar Artistas
+- Cadastrar e listar Álbuns vinculados a Artistas
+- Cadastrar e listar Faixas vinculadas a Álbuns
 
----
+Relacionamentos implementados:
+- Um Artista pode possuir vários Álbuns
+- Um Álbum pode possuir várias Faixas
 
-## Arquitetura
-A aplicação utiliza arquitetura em camadas, separando claramente as responsabilidades:
+Arquitetura do Projeto
 
-- **Controller:** recebe as requisições HTTP
-- **Service:** contém as regras de negócio
-- **Repository:** realiza o acesso ao banco de dados
-- **Security:** controla autenticação e autorização
-- **Infra:** configurações gerais e integrações
+O projeto segue o padrão de arquitetura em camadas, separando responsabilidades e facilitando manutenção, testes e evolução.
 
----
+Estrutura de diretórios:
 
-## Tecnologias Utilizadas
+src/main/java/br/gov/mt/artistasapi
+├── controller
+├── model
+├── repository
+├── service
+└── ArtistasApiApplication.java
+
+Descrição das camadas:
+- controller: camada responsável pelos endpoints REST
+- service: regras de negócio e validações
+- repository: persistência de dados com Spring Data JPA
+- model: entidades JPA e mapeamento relacional
+
+Tecnologias Utilizadas
 
 - Java 17
-- Spring Boot
+- Spring Boot 3.x
+- Spring Web
 - Spring Data JPA
-- API REST
-- Banco de Dados Relacional
-- Docker e Docker Compose
-- MinIO (armazenamento de arquivos)
-- HTML, CSS e JavaScript (visualização conceitual)
+- Hibernate
+- H2 Database (em memória)
+- Maven
 
----
+Execução do Projeto
 
-## Segurança
-- Autenticação via JWT
-- Tokens com tempo de expiração
-- Renovação de token
-- CORS configurado
-- Controle de requisições por usuário
+Pré-requisitos:
+- Java 17 ou superior instalado
+- Maven instalado
+- Porta 8080 disponível
 
----
+Para executar o projeto, acesse a pasta raiz e execute:
 
-## Funcionalidades
-- Cadastro e consulta de artistas
-- Cadastro e consulta de álbuns
-- Relacionamento entre artistas e álbuns
-- Paginação e ordenação
-- Upload de capas de álbuns
-- Armazenamento de imagens no MinIO
-- URLs temporárias para acesso às imagens
-- Notificação em tempo real via WebSocket
-- Health Check da aplicação
+mvn clean spring-boot:run
 
----
+A aplicação será iniciada em:
 
-## Visualização do Domínio
+http://localhost:8080
 
-Para facilitar o entendimento do modelo de dados e da proposta do sistema,
-foi incluído um arquivo `index.html` na raiz do repositório.
+Banco de Dados
 
-Esse arquivo apresenta uma visualização conceitual do domínio
-(Artista → Álbum → Faixa), inspirada em plataformas de catálogo musical,
-servindo exclusivamente como apoio visual à avaliação.
+O projeto utiliza banco de dados H2 em memória.
 
-A implementação completa das regras de negócio, persistência de dados
-e endpoints REST encontra-se no back-end desenvolvido em Java com Spring Boot.
+Observação importante:
+Sempre que a aplicação for reiniciada, os dados serão apagados.
 
----
+Console do H2:
+http://localhost:8080/h2-console
 
-## Execução do Projeto
+Configurações do H2:
+- JDBC URL: jdbc:h2:mem:artistasdb
+- User Name: sa
+- Password: (vazio)
 
-### Pré-requisitos
-- Docker
-- Docker Compose
+Endpoints Disponíveis
 
-### Subir a aplicação
-```bash
-docker-compose up -d
+Artistas:
+- POST /artistas
+- GET /artistas
+
+Álbuns:
+- POST /albuns
+- GET /albuns
+
+Faixas:
+- POST /faixas
+- GET /faixas
+
+Testes via Console (CMD / Terminal)
+
+Todos os testes abaixo foram executados via prompt de comando (CMD no Windows), utilizando curl.
+
+Criar Artista:
+
+curl -X POST http://localhost:8080/artistas -H "Content-Type: application/json" -d "{\"nome\":\"Legião Urbana\"}"
+
+Listar Artistas:
+
+curl http://localhost:8080/artistas
+
+Criar Álbum (assumindo artista com id=1):
+
+curl -X POST http://localhost:8080/albuns -H "Content-Type: application/json" -d "{\"titulo\":\"Dois\",\"anoLancamento\":1986,\"artistaId\":1}"
+
+Listar Álbuns:
+
+curl http://localhost:8080/albuns
+
+Criar Faixa (assumindo álbum com id=1):
+
+curl -X POST http://localhost:8080/faixas -H "Content-Type: application/json" -d "{\"titulo\":\"Eduardo e Mônica\",\"numeroFaixa\":1,\"duracaoSegundos\":260,\"albumId\":1}"
+
+Criar segunda Faixa:
+
+curl -X POST http://localhost:8080/faixas -H "Content-Type: application/json" -d "{\"titulo\":\"Tempo Perdido\",\"numeroFaixa\":2,\"duracaoSegundos\":300,\"albumId\":1}"
+
+Listar Faixas:
+
+curl http://localhost:8080/faixas
+
+Checklist de Funcionamento
+
+- Aplicação executa com mvn clean spring-boot:run
+- API responde corretamente na porta 8080
+- Endpoints REST funcionam conforme esperado
+- Banco H2 inicializa automaticamente
+- Relacionamentos entre Artista, Álbum e Faixa funcionam corretamente
+- Testes realizados via console com curl
+
+Autor
+
+Patryk Campos Rodrigues  
+Inscrição: 698200
