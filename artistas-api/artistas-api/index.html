@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo Musical – Projeto Técnico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1db954;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #000;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #1db954;
+            padding-bottom: 5px;
+        }
+
+        .card {
+            background-color: #181818;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #1db954;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        .info {
+            background-color: #222;
+            border-left: 4px solid #1db954;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Catálogo Musical</h1>
+    <p>Projeto Técnico – Processo Seletivo de TI SEPLAG MT</p>
+</header>
+
+<main>
+
+    <section>
+        <h2>📌 Sobre o Projeto</h2>
+        <div class="card">
+            <p>
+                Este projeto apresenta um <strong>catálogo musical</strong> inspirado em plataformas
+                como o Spotify, desenvolvido com foco em <strong>organização de dados</strong>,
+                <strong>modelagem de domínio</strong> e <strong>clareza arquitetural</strong>.
+            </p>
+            <p>
+                O objetivo é demonstrar a estrutura conceitual do sistema.
+                A implementação completa das regras de negócio e persistência
+                está disponível no back-end desenvolvido em Java com Spring Boot.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🧠 Modelo de Domínio</h2>
+
+        <div class="card">
+            <h3>🎤 Artista</h3>
+            <ul>
+                <li>ID</li>
+                <li>Nome</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💿 Álbum</h3>
+            <ul>
+                <li>ID</li>
+                <li>Título</li>
+                <li>Ano de Lançamento</li>
+                <li>Artista associado</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🎵 Faixa</h3>
+            <ul>
+                <li>ID</li>
+                <li>Título</li>
+                <li>Duração (em segundos)</li>
+                <li>Número da faixa</li>
+                <li>Álbum associado</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            A relação entre as entidades segue o padrão:
+            <strong>Artista → Álbum → Faixa</strong>,
+            garantindo simplicidade, coerência e aderência a cenários reais.
+        </div>
+    </section>
+
+    <section>
+        <h2>🎧 Exemplo Conceitual</h2>
+
+        <div class="card">
+            <h3>Artista: Banda Exemplo</h3>
+            <p>Álbum: Sons do Código (2024)</p>
+            <ul>
+                <li>01 – Introdução ao Sistema (120s)</li>
+                <li>02 – Arquitetura Limpa (210s)</li>
+                <li>03 – Deploy em Produção (185s)</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            Os dados apresentados são ilustrativos e servem apenas para
+            facilitar o entendimento do domínio pela banca avaliadora.
+        </div>
+    </section>
+
+    <section>
+        <h2>⚙️ Considerações Técnicas</h2>
+        <div class="card">
+            <ul>
+                <li>Este arquivo é apenas uma <strong>representação visual</strong>.</li>
+                <li>As operações de CRUD são realizadas via API REST.</li>
+                <li>Persistência e regras de negócio estão no back-end.</li>
+                <li>Projeto estruturado para fácil manutenção e escalabilidade.</li>
+            </ul>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        Projeto desenvolvido por Patryk Campos Rodrigues<br>
+        Processo Seletivo – Área de Tecnologia da Informação
+    </p>
+</footer>
+
+</body>
+</html>
