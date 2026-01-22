@@ -1,0 +1,23 @@
+package br.gov.mt.artistasapi.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+@RestControllerAdvice
+public class ApiExceptionHandler {
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> handleRuntime(RuntimeException ex) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", Instant.now().toString());
+        body.put("status", 400);
+        body.put("error", "Bad Request");
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+}
